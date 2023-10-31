@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Poppins:wght@200;300;400;500;700&display=swap');
+        *
+        {
+            margin: 0;
+            padding: 0;
+            font-family: 'poppins', sans-serif;
+        }
+        body{
+            width: 100vw;
+            height: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("b2.jpeg");
+            color: white;
+            background-size: cover;
+            background-position: center;
+        }
+        .counter{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        p{
+            font-size: 13px;
+        }
+        .newyear{
+            font-family: 'inspiration',cursive;
+            font-size: 50px;
+            font-weight: 400px;
+            margin-top: 30px;
+        }
+        .box{
+            width:70px;
+            height: 50px;
+            text-align: center;
+        }
+        .box h2{
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .box small{
+            font-size: 15px;
+        }
+        @media(min-width:576px){
+            .newyear{
+                font-size: 100px;
+            }
+            p{
+                font-size: 18px;
+            }
+            .box h2{
+                font-size: 30px;
+            }
+            
+        }
+        @media(max-width:768px){
+            .newyear{
+                font-size: 150px;
+            }
+            p{
+                font-size: 25px;
+            }
+            .box h2{
+                font-size: 50px;
+            }
+            .box{
+            width:150px;
+            height: 50px;
+        }
+        .box small{
+            font-size: 20px;
+        }
+    }
+        </style>
+        
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count</title>
+</head>
+<body> 
+    <p>Countown to</p>
+    <h2 class="newyear">New Year</h2>
+    <div class="counter">
+
+        <div class="box">
+            <h2 id="days">00</h2>
+            <small>Days</small>
+        </div>
+        <div class="box">
+            <h2 id="houres">00</h2>
+            <small>Houres</small>
+        </div>
+        <div class="box">
+            <h2 id="minutes">00</h2>
+            <small>Minutes</small>
+        </div>    
+        <div class="box">
+            <h2 id="seconds">00</h2>
+            <small>Seconds</small>
+        </div>
+    </div>
+    <script src="/sel.js">
+        const days=document.querySelector("#days");
+const houres=document.querySelector("#houres");
+const minutes=document.querySelector("#minutes");
+const seconds=document.querySelector("#seconds");
+function UpdateTime(){
+    const currentYear=new Date().getFullYear();
+    const newYear=new Date(`january 1 ${currentYear+1}00:00:00`);
+    const currentDate=new Date();
+    const diff=newYear-currentDate;
+    const d=Math.floor(diff/1000/60/60/24);
+    const h=Math.floor((diff/1000/60/60)%24);
+    const m=Math.floor((diff/1000/60)%60);
+    const s=Math.floor((diff/1000)%60);
+    days.innerHTML=d<10?"0"+d:d;
+    houres.innerHTML=h<10?"0"+h:h;
+    minutes.innerHTML=m<10?"0"+m:m;
+    seconds.innerHTML=s<10?"0"+s:s;
+}
+setInterval(UpdateTime,1000);
+    </script>
+</body>
+</html>
